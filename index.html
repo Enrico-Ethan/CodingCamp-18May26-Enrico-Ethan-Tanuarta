@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Productivity Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ── Top Bar ── -->
+  <header class="top-bar">
+    <span class="app-title">Dashboard</span>
+    <div class="top-bar-actions">
+      <button id="theme-toggle" class="icon-btn" title="Toggle theme" aria-label="Toggle light/dark mode">🌙</button>
+    </div>
+  </header>
+
+  <main class="grid">
+
+    <!-- ── 1. Greeting ── -->
+    <section class="card greeting-card" id="greeting-section">
+      <div class="greeting-text">
+        <h1 id="greeting-msg">Good morning!</h1>
+        <p id="greeting-name-display"></p>
+      </div>
+      <div class="datetime">
+        <div id="clock" class="clock">00:00:00</div>
+        <div id="date-display" class="date"></div>
+      </div>
+      <!-- Name editor (hidden by default) -->
+      <div class="name-editor hidden" id="name-editor">
+        <input type="text" id="name-input" placeholder="Enter your name…" maxlength="40" aria-label="Your name" />
+        <button id="name-save-btn" class="btn btn-primary">Save</button>
+        <button id="name-cancel-btn" class="btn btn-ghost">Cancel</button>
+      </div>
+      <button id="name-edit-btn" class="btn btn-ghost btn-sm">✏️ Set name</button>
+    </section>
+
+    <!-- ── 2. Focus Timer ── -->
+    <section class="card timer-card">
+      <h2 class="card-title">Focus Timer</h2>
+      <div class="timer-display" id="timer-display" aria-live="polite">25:00</div>
+      <div class="timer-label" id="timer-label">Pomodoro · 25 min</div>
+      <div class="timer-controls">
+        <button id="timer-start" class="btn btn-primary">▶ Start</button>
+        <button id="timer-stop"  class="btn btn-secondary" disabled>⏸ Pause</button>
+        <button id="timer-reset" class="btn btn-ghost">↺ Reset</button>
+      </div>
+      <div class="timer-progress-wrap">
+        <div class="timer-progress-bar" id="timer-progress-bar"></div>
+      </div>
+    </section>
+
+    <!-- ── 3. To-Do List ── -->
+    <section class="card todo-card">
+      <h2 class="card-title">To-Do List</h2>
+      <div class="todo-input-row">
+        <input type="text" id="todo-input" placeholder="Add a new task…" maxlength="120" aria-label="New task" />
+        <button id="todo-add-btn" class="btn btn-primary">Add</button>
+      </div>
+      <p class="duplicate-warning hidden" id="duplicate-warning" aria-live="polite">⚠️ Task already exists!</p>
+      <ul class="todo-list" id="todo-list" aria-label="Task list"></ul>
+      <p class="todo-empty" id="todo-empty">No tasks yet. Add one above!</p>
+    </section>
+
+    <!-- ── 4. Quick Links ── -->
+    <section class="card links-card">
+      <h2 class="card-title">Quick Links</h2>
+      <div class="links-input-row">
+        <input type="text" id="link-name-input" placeholder="Label"   maxlength="30" aria-label="Link label" />
+        <input type="url"  id="link-url-input"  placeholder="https://…"              aria-label="Link URL" />
+        <button id="link-add-btn" class="btn btn-primary">Add</button>
+      </div>
+      <div class="links-grid" id="links-grid"></div>
+      <p class="links-empty" id="links-empty">No links yet. Add one above!</p>
+    </section>
+
+  </main>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

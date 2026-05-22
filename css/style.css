@@ -1,0 +1,420 @@
+/* ============================================================
+   CSS Custom Properties — Light & Dark themes
+   ============================================================ */
+:root {
+  --bg:          #f0f2f5;
+  --surface:     #ffffff;
+  --surface-alt: #f7f8fa;
+  --border:      #e2e5ea;
+  --text:        #1a1d23;
+  --text-muted:  #6b7280;
+  --primary:     #4f46e5;
+  --primary-h:   #4338ca;
+  --secondary:   #6b7280;
+  --secondary-h: #4b5563;
+  --danger:      #ef4444;
+  --danger-h:    #dc2626;
+  --success:     #22c55e;
+  --warning-bg:  #fef9c3;
+  --warning-txt: #854d0e;
+  --radius:      12px;
+  --radius-sm:   8px;
+  --shadow:      0 2px 12px rgba(0,0,0,.08);
+  --transition:  .2s ease;
+}
+
+[data-theme="dark"] {
+  --bg:          #0f1117;
+  --surface:     #1a1d27;
+  --surface-alt: #22263a;
+  --border:      #2e3347;
+  --text:        #e8eaf0;
+  --text-muted:  #8b92a8;
+  --primary:     #6366f1;
+  --primary-h:   #818cf8;
+  --secondary:   #6b7280;
+  --secondary-h: #9ca3af;
+  --danger:      #f87171;
+  --danger-h:    #fca5a5;
+  --warning-bg:  #3b2f00;
+  --warning-txt: #fde68a;
+  --shadow:      0 2px 16px rgba(0,0,0,.4);
+}
+
+/* ============================================================
+   Reset & Base
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+}
+
+/* ============================================================
+   Top Bar
+   ============================================================ */
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow);
+}
+
+.app-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: .5px;
+  color: var(--primary);
+}
+
+.icon-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 6px 10px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+.icon-btn:hover { background: var(--surface-alt); }
+
+/* ============================================================
+   Main Grid
+   ============================================================ */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ============================================================
+   Cards
+   ============================================================ */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  transition: background var(--transition), border-color var(--transition);
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: .8px;
+  margin-bottom: 18px;
+}
+
+/* ============================================================
+   Buttons
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: .875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background var(--transition), opacity var(--transition);
+  white-space: nowrap;
+}
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+
+.btn-primary   { background: var(--primary);   color: #fff; }
+.btn-primary:hover:not(:disabled)   { background: var(--primary-h); }
+
+.btn-secondary { background: var(--secondary); color: #fff; }
+.btn-secondary:hover:not(:disabled) { background: var(--secondary-h); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+.btn-ghost:hover:not(:disabled) { background: var(--surface-alt); }
+
+.btn-danger { background: var(--danger); color: #fff; }
+.btn-danger:hover:not(:disabled) { background: var(--danger-h); }
+
+.btn-sm { padding: 5px 10px; font-size: .8rem; }
+
+/* ============================================================
+   Inputs
+   ============================================================ */
+input[type="text"],
+input[type="url"] {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface-alt);
+  color: var(--text);
+  font-size: .9rem;
+  transition: border-color var(--transition), background var(--transition);
+  outline: none;
+}
+input[type="text"]:focus,
+input[type="url"]:focus {
+  border-color: var(--primary);
+  background: var(--surface);
+}
+
+/* ============================================================
+   Greeting Card
+   ============================================================ */
+.greeting-card {
+  grid-column: 1 / -1;   /* full width */
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.greeting-text h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+#greeting-name-display {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.datetime { text-align: right; }
+
+.clock {
+  font-size: 2.4rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 2px;
+  color: var(--primary);
+}
+
+.date {
+  font-size: .9rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.name-editor {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+  margin-top: 8px;
+}
+.name-editor input { max-width: 260px; }
+
+/* ============================================================
+   Timer Card
+   ============================================================ */
+.timer-card { text-align: center; }
+
+.timer-display {
+  font-size: 4rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 4px;
+  color: var(--primary);
+  margin: 8px 0 4px;
+}
+
+.timer-label {
+  font-size: .85rem;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.timer-controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.timer-progress-wrap {
+  height: 6px;
+  background: var(--border);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.timer-progress-bar {
+  height: 100%;
+  width: 100%;
+  background: var(--primary);
+  border-radius: 99px;
+  transition: width .5s linear;
+}
+
+/* ============================================================
+   To-Do Card
+   ============================================================ */
+.todo-input-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.todo-input-row input { flex: 1; }
+
+.duplicate-warning {
+  font-size: .82rem;
+  color: var(--warning-txt);
+  background: var(--warning-bg);
+  border-radius: var(--radius-sm);
+  padding: 6px 10px;
+  margin-bottom: 8px;
+}
+
+.todo-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 340px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+/* scrollbar */
+.todo-list::-webkit-scrollbar { width: 4px; }
+.todo-list::-webkit-scrollbar-track { background: transparent; }
+.todo-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  transition: background var(--transition);
+}
+.todo-item:hover { background: var(--bg); }
+
+.todo-item input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--primary);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.todo-item-text {
+  flex: 1;
+  font-size: .9rem;
+  word-break: break-word;
+  cursor: pointer;
+}
+.todo-item-text.done {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+.todo-item-edit {
+  flex: 1;
+  font-size: .9rem;
+}
+
+.todo-item-actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.todo-empty, .links-empty {
+  font-size: .875rem;
+  color: var(--text-muted);
+  text-align: center;
+  padding: 20px 0 4px;
+}
+
+/* ============================================================
+   Quick Links Card
+   ============================================================ */
+.links-input-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.links-input-row input { flex: 1; min-width: 100px; }
+
+.links-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.link-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  font-size: .85rem;
+  color: var(--text);
+  text-decoration: none;
+  transition: background var(--transition), border-color var(--transition);
+  max-width: 200px;
+}
+.link-chip:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+.link-chip:hover .link-delete { color: #fff; }
+
+.link-chip span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.link-delete {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  font-size: .75rem;
+  padding: 0;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: color var(--transition);
+}
+
+/* ============================================================
+   Utility
+   ============================================================ */
+.hidden { display: none !important; }
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 600px) {
+  .grid { padding: 16px; gap: 16px; }
+  .greeting-card { flex-direction: column; align-items: flex-start; }
+  .datetime { text-align: left; }
+  .clock { font-size: 1.8rem; }
+  .timer-display { font-size: 3rem; }
+  .greeting-text h1 { font-size: 1.4rem; }
+}
